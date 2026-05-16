@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Description - Vehicle Parking Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 35px;
+        }
+        h2 {
+            border-bottom: 2px solid #bdc3c7;
+            padding-bottom: 8px;
+            margin-top: 45px;
+            color: #2980b9;
+        }
+        h3 {
+            margin-top: 30px;
+            color: #34495e;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        code {
+            background-color: #f0f2f5;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #e74c3c;
+            font-size: 0.95em;
+        }
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .file-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .file-list li {
+            margin-bottom: 18px;
+            padding: 20px;
+            background-color: #fdfefe;
+            border-left: 5px solid #3498db;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .file-name {
+            font-weight: 700;
+            font-size: 1.15em;
+            color: #2980b9;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .note {
+            background-color: #e8f4fd;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+            color: #2c3e50;
+        }
+        .note strong {
+            color: #2980b9;
+        }
+        ol, ul {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vehicle Parking Management System (ParkEase)</h1>
+        
+        <p>Welcome to the <strong>Vehicle Parking Management System</strong>! This comprehensive guide will explain the entire project to you step-by-step, file-by-file, and show you exactly how to run it.</p>
+
+        <h2>1. Project Overview</h2>
+        <p>This project is a Java-based web application built using <strong>Servlets</strong>, <strong>JSP (JavaServer Pages)</strong>, and <strong>Maven</strong>. Instead of using a traditional database like MySQL, this project uses <strong>File-based storage</strong> (<code>.txt</code> files) to store all its data (Users, Vehicles, Transactions, etc.).</p>
+        
+        <p>It follows a standard <strong>MVC (Model-View-Controller)</strong> architecture:</p>
+        <ul>
+            <li><strong>Model:</strong> Represents the data objects (User, Vehicle).</li>
+            <li><strong>View:</strong> The user interface built with HTML/CSS and JSP.</li>
+            <li><strong>Controller:</strong> Servlets that handle requests from the View, process them via Services, and return responses.</li>
+        </ul>
+
+        <h2>2. Directory Structure</h2>
+        <p>Here is a high-level overview of the project structure:</p>
+        <pre><code>vehicleparkingmanagementsystem/
+├── pom.xml                   # Maven configuration file
+├── src/                      # Java Source Code
+│   └── com/parking/
+│       ├── controller/       # Servlets handling HTTP requests
+│       ├── model/            # Data entities (POJOs)
+│       ├── service/          # Business logic layer
+│       └── util/             # Utility classes (like FileHandler)
+└── web/                      # Web Resources (Frontend)
+    ├── css/
+    │   └── style.css         # Styling for the application
+    ├── WEB-INF/
+    │   └── web.xml           # Web application deployment descriptor
+    └── index.jsp             # The landing page of the website</code></pre>
+        
+        <div class="note">
+            <strong>Note:</strong> The JSP pages that are supposed to go inside <code>web/pages/</code> are currently missing in the directory, but the backend is fully programmed to route to them!
+        </div>
+
+        <h2>3. File-by-File Explanation</h2>
+        
+        <h3>3.1. The Root Files</h3>
+        <ul class="file-list">
+            <li>
+                <span class="file-name">pom.xml</span><br>
+                This is the Maven configuration file. It tells Maven how to build the project and downloads required dependencies automatically. In this project, it downloads: Java Servlet API 4.0.1, JSP API 2.3.3, and JSTL 1.2. It also configures the project to use Java 11 and package the code into a <code>.war</code> file for deployment.
+            </li>
+        </ul>
+
+        <h3>3.2. Web Resources (<code>web/</code> directory)</h3>
+        <ul class="file-list">
+            <li>
+                <span class="file-name">web/index.jsp</span><br>
+                The main landing page ("ParkEase") you see when you start the application. It contains the "Hero" section, marketing text, and buttons to Login or Register as an Admin/User.
+            </li>
+            <li>
+                <span class="file-name">web/css/style.css</span><br>
+                Contains all the CSS rules that make the application look modern (dark theme, glassmorphic effects, modern fonts).
+            </li>
+            <li>
+                <span class="file-name">web/WEB-INF/web.xml</span><br>
+                A configuration file for the web server (Tomcat). It defines the <code>index.jsp</code> as the default welcome page, sets session timeouts (30 minutes), and configures the <code>dataDir</code> (Data Directory) where text files will be saved.
+            </li>
+        </ul>
+
+        <h3>3.3. Models (<code>src/com/parking/model/</code>)</h3>
+        <p>These are plain Java objects (POJOs) used to hold data temporarily in memory before saving to or after reading from text files.</p>
+        <ul class="file-list">
+            <li><span class="file-name">User.java</span><br>Holds customer details (ID, name, email, password, phone, address).</li>
+            <li><span class="file-name">Admin.java</span><br>Holds administrator credentials.</li>
+            <li><span class="file-name">Vehicle.java</span><br>Holds details about registered vehicles (License plate, owner ID, vehicle type).</li>
+            <li><span class="file-name">ParkingSlot.java</span><br>Represents a physical parking slot (Slot ID, Floor, Status - Occupied/Available).</li>
+            <li><span class="file-name">Transaction.java</span><br>Represents a parking session (Entry time, Exit time, Slot used, User ID).</li>
+            <li><span class="file-name">Payment.java</span><br>Records billing information (Transaction ID, Amount, Payment method, Status).</li>
+        </ul>
+
+        <h3>3.4. Controllers (<code>src/com/parking/controller/</code>)</h3>
+        <p>These Servlets intercept URLs requested by the browser (e.g., <code>/user/login</code>).</p>
+        <ul class="file-list">
+            <li><span class="file-name">UserServlet.java</span> (<code>/user/*</code>)<br>Handles User registration, login, logout, and profile updates.</li>
+            <li><span class="file-name">AdminServlet.java</span> (<code>/admin/*</code>)<br>Handles Admin authentication and dashboard routes.</li>
+            <li><span class="file-name">VehicleServlet.java</span> (<code>/vehicle/*</code>)<br>Handles adding a new vehicle, viewing a user's vehicles, etc.</li>
+            <li><span class="file-name">SlotServlet.java</span> (<code>/slot/*</code>)<br>Handles requests related to checking slot availability and assigning slots.</li>
+            <li><span class="file-name">TransactionServlet.java</span> (<code>/transaction/*</code>)<br>Handles vehicle check-in and check-out requests.</li>
+            <li><span class="file-name">PaymentServlet.java</span> (<code>/payment/*</code>)<br>Handles processing payments when a vehicle exits.</li>
+        </ul>
+
+        <h3>3.5. Services (<code>src/com/parking/service/</code>)</h3>
+        <p>Controllers don't do the heavy lifting; they pass data to Services. Services contain the actual "business logic."</p>
+        <ul class="file-list">
+            <li><span class="file-name">UserService.java</span><br>Validates if an email is already registered, verifies login credentials against saved text files.</li>
+            <li><span class="file-name">AdminService.java</span><br>Handles admin-specific logic.</li>
+            <li><span class="file-name">VehicleService.java</span><br>Logic for validating and saving new vehicles.</li>
+            <li><span class="file-name">SlotService.java</span><br>Logic to find the nearest available parking slot.</li>
+            <li><span class="file-name">TransactionService.java</span><br>Calculates durations and initiates parking sessions.</li>
+            <li><span class="file-name">PaymentService.java</span><br>Calculates the final parking fee based on the duration of the transaction.</li>
+        </ul>
+
+        <h3>3.6. Utilities (<code>src/com/parking/util/</code>)</h3>
+        <ul class="file-list">
+            <li>
+                <span class="file-name">FileHandler.java</span><br>
+                The most crucial utility in the project! Since there is no database, this class handles creating, reading, writing, and appending to <code>.txt</code> files inside a <code>data/</code> folder (which gets created automatically inside the deployed webapp folder).
+            </li>
+        </ul>
+
+        <h2>4. How to Run the Project</h2>
+        <p>Since this is a standard Maven Web Application, you need <strong>Java 11+</strong>, <strong>Maven</strong>, and <strong>Apache Tomcat (v9)</strong> to run it.</p>
+
+        <h3>Step 1: Install Prerequisites</h3>
+        <ol>
+            <li><strong>Java JDK 11</strong> (or higher). Ensure <code>JAVA_HOME</code> is set.</li>
+            <li><strong>Apache Maven</strong>. Ensure <code>mvn</code> is accessible from your command prompt/terminal.</li>
+            <li><strong>Apache Tomcat 9</strong>. Download the ZIP, extract it somewhere on your computer.</li>
+        </ol>
+
+        <h3>Step 2: Build the Project using Maven</h3>
+        <p>Open your terminal/command prompt, navigate to the project root directory, and run:</p>
+        <pre><code>mvn clean install</code></pre>
+        <p><em>What this does:</em> Maven will compile all the Java code in the <code>src/</code> folder and package it along with the <code>web/</code> folder into a single file named <code>VehicleParkingSystem-1.0-SNAPSHOT.war</code> located inside a newly created <code>target/</code> directory.</p>
+
+        <h3>Step 3: Deploy to Tomcat</h3>
+        <ol>
+            <li>Go into the <code>target/</code> directory of your project.</li>
+            <li>Find the generated <code>.war</code> file (<code>VehicleParkingSystem-1.0-SNAPSHOT.war</code>).</li>
+            <li>Copy this file and paste it inside the <code>webapps/</code> folder of your <strong>Apache Tomcat</strong> installation directory.</li>
+            <li><em>(Optional)</em> Rename the <code>.war</code> file to <code>parking.war</code> to make the URL shorter.</li>
+        </ol>
+
+        <h3>Step 4: Start the Server</h3>
+        <ol>
+            <li>Navigate to the <code>bin/</code> folder inside your Tomcat installation directory.</li>
+            <li>Run the startup script:
+                <ul>
+                    <li><strong>Windows:</strong> Double-click <code>startup.bat</code> (or run it from cmd).</li>
+                    <li><strong>Mac/Linux:</strong> Run <code>./startup.sh</code> in the terminal.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>Step 5: Access the Application</h3>
+        <p>Open your web browser and go to:</p>
+        <pre><code>http://localhost:8080/VehicleParkingSystem-1.0-SNAPSHOT/</code></pre>
+        <p><em>(If you renamed the file to <code>parking.war</code>, go to <code>http://localhost:8080/parking/</code>)</em></p>
+        
+        <p>You will see the <strong>ParkEase</strong> hero section!</p>
+
+        <div class="note">
+            <strong>Note on Data Storage:</strong> When you register a user or add a vehicle, the <code>FileHandler.java</code> will create a folder named <code>data/</code> directly inside the deployed Tomcat folder (<code>Tomcat/webapps/VehicleParkingSystem-1.0-SNAPSHOT/data/</code>) and save text files there.
+        </div>
+    </div>
+</body>
+</html>
